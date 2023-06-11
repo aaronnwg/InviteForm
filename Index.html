@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Form</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>You are invited to my party!</h1>
+        <h2>Please fill out the invitation form</h2>
+    </header>
+    <div id="app">
+        <section id="invite_form">
+            <form v-on:submit.prevent="submitForm">
+                <div id="name">
+                    <!--name form-->
+                    <div class="form-row">
+                        <div class="form-field">
+                          <label for="name">What is your name?</label>
+                          <input type="text" id="name" />
+                        </div>
+                    </div>
+                </div>
+                <div id="attending">
+                    <!--attending radio-->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="attending">Will you be attending?</label>
+                            <div>
+                                <input type="radio" class="yes" value="yes" v-model="attending">
+                                <label for="yes">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="no" value="no" v-model="attending">
+                                <label for="no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="guests">
+                    <!--guests radio-->
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="attending">Will you be bringing guests?</label>
+                            <div>
+                                <input type="radio" class="yes" value="yes" v-model="guests">
+                                <label for="yes">Yes</label>
+                            </div>
+                            <div>
+                                <input type="radio" class="no" value="no" v-model="guests">
+                                <label for="no">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="guests_number"> <!--appears if yes -->
+                    <!--guests # fropdown-->
+                    <div class="form-row">
+                        <div class="form-field">
+                          <label for="guest_quantity">How many guests do youb plan on bringing?</label>
+                          <select id="guest_quantity" v-model.number="guests_quantity">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                          </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="partyfavors"> <!--checkboxes disappear after certain number of checks-->
+                    <!--favors checkboxes-->
+                    <div class="form-row checkbox">
+                        <label>what will you be bringing?</label>
+                        <fieldset>
+                          <div>
+                            <input type="checkbox" id="drinks" value="drinks" v-model="bringing">
+                            <label for="drinks">Drinks</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="food" value="food" v-model="bringing">
+                            <label for="food">Food</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="snacks" value="snacks" v-model="bringing">
+                            <label for="snacks">Snacks</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="plates" value="plates" v-model="bringing">
+                            <label for="plates">Plates</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="cups" value="cups" v-model="bringing">
+                            <label for="cups">Cups</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="napkins" value="napkins" v-model="bringing">
+                            <label for="napkins">Napkins</label>
+                          </div>
+                          <div>
+                            <input type="checkbox" id="other" value="other" v-model="bringing">
+                            <label for="other">Something Else</label>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-field">
+                              <label for="something_else">What else are you bringing?</label>
+                              <input type="text" id="something_else" />
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                      
+                </div>
+                <div id="submit_div">
+                    <!--submit button--><!--triggers checkbox disappearance and guest addition-->
+                    <button type="submit" v-bind:disabled="!formIsValid">Confirm Tickets</button>
+                </div>
+            </form>
+        </section>
+        <section id="form_responses">
+            <div id="responses">
+                <!--list of guests with their favors and #of guests-->
+                <p>There are {{number of attendees}} people attending the party!</p>
+                <p>Guest:</p>
+                <ul>
+                    <li>
+                        <p>{{name}} + {{number of guests}}</p>
+                        <p>bringing {{party favors}}</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+
+    
+</body>
+</html>
